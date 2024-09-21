@@ -23,12 +23,12 @@ const About = () => {
                 <h2 className={headings.h2}>About me</h2>
                 <p className={text.normal}>
                     Hey, I&apos;m{" "}
-                    <span className={text.highlighted}>Chetan Panchal</span>{" "}
+                    <span className={text.highlighted}>Rudra Patell</span>{" "}
                     <br /> I&apos;m a{" "}
                     <span className={text.highlighted}>
                         Full Stack Developer & UI/UX Designer with extensive
                         industry-level experience in designing and developing
-                        high-performance websites & mobile applications.
+                        high-performance websites with the familiarity of Web 3.0
                     </span>
                     <br />
                     My expertise lies in{" "}
@@ -60,7 +60,7 @@ const About = () => {
                     className="absolute top-0 left-0 h-[250px] w-[250px]"
                 />
                 <Image
-                    src="/assets/images/about-section/Chetan-Panchal.png"
+                    src="/assets/images/about-section/porfolio.png"
                     alt="Background Image 2"
                     width={250}
                     height={250}
