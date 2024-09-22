@@ -1,13 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import { buttons, headings, inputs, links, text } from "../styles";
-import { LuInstagram } from "react-icons/lu";
 import { MdAlternateEmail } from "react-icons/md";
 import { FaGithub } from "react-icons/fa";
 import { FiLinkedin } from "react-icons/fi";
 import { IoCloudDoneOutline } from "react-icons/io5";
 import { FaSpinner } from "react-icons/fa";
-import Link from "next/link";
+import emailjs from "emailjs-com"
 
 const Contact = () => {
     const [sending, setSending] = useState(false);
@@ -50,7 +49,10 @@ const Contact = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const api = process.env.NEXT_PUBLIC_SHEETSAPI!;
+
+    const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID!
+    const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID!
+    const USER_ID = process.env.NEXT_PUBLIC_USER_ID!
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -60,25 +62,24 @@ const Contact = () => {
             data.append("name", formData.name);
             data.append("email", formData.email);
             data.append("message", formData.message);
-            try {
-                const response = await fetch(api, {
-                    method: "POST",
-                    body: data,
+            
+          emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+                name: formData.name,
+                email: formData.email,
+                message: formData.message,
+            }, USER_ID).then((res) => {
+                console.log("Email sent successfully!");
+                console.log(res)
+                setSent(true);
+                setFormData({
+                    name: "",
+                    email: "",
+                    message: "",
                 });
-
-                if (response.ok) {
-                    setSent(true);
-                    setFormData({
-                        name: "",
-                        email: "",
-                        message: "",
-                    });
-                } else {
-                    console.error("Error: Failed to send form data.");
-                }
-            } catch (err) {
-                console.error("Error sending data: ", err);
-            }
+            }).catch((err) => {
+                console.error("Failed to send email.", err);
+            })
+         
         } else {
             console.log("Validation failed.");
         }
@@ -97,34 +98,28 @@ const Contact = () => {
                     <br />
                     There&apos;re multiple ways to connect with me.
                 </p>
-                <Link
-                    href="/"
-                    className={`${links.primary} flex items-center gap-2`}
-                >
-                    <LuInstagram />
-                    <span>Instagram</span>
-                </Link>
-                <Link
-                    href="/"
+               
+                <a
+                    href="mailto:rudracode2004@gmail.com"
                     className={`${links.primary} flex items-center gap-2`}
                 >
                     <MdAlternateEmail />
                     <span>Email</span>
-                </Link>
-                <Link
-                    href="/"
+                </a>
+                <a
+                    href="https://github.com/Rudra-Patel-code"
                     className={`${links.primary} flex items-center gap-2`}
                 >
                     <FaGithub />
                     <span>GitHub</span>
-                </Link>
-                <Link
-                    href="/"
+                </a>
+                <a
+                    href="https://www.linkedin.com/in/rudra-patel-code/"
                     className={`${links.primary} flex items-center gap-2`}
                 >
                     <FiLinkedin />
                     <span>LinkedIn</span>
-                </Link>
+                </a>
             </div>
             {sending ? (
                 <div className="min-w-[200px] max-w-[400px] w-full flex flex-col justify-center items-center">

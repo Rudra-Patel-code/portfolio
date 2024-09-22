@@ -46,19 +46,19 @@ const Portfolio = () => {
                                     <h3 className={headings.h3}>
                                         {project.name}
                                     </h3>
-                                    <span className="px-2 py-1 rounded-full bg-gray-100/50 text-gray-950 text-xs capitalize">
+                                    <span className="px-2 py-1 rounded-full bg-gray-100/50 text-gray-950 font-medium text-sm capitalize">
                                         {project.difficulty}
                                     </span>
                                 </div>
                                 <div>
-                                    <p className="text-sm my-1">
+                                    <p className="text-base font-medium my-1">
                                         {project.description}
                                     </p>
-                                    <p className="flex justify-start items-center gap-1 flex-wrap">
+                                    <p className="flex justify-start items-center gap-1 mt-3 flex-wrap">
                                         {project.skills.map((skill: string) => (
                                             <span
                                                 key={skill}
-                                                className="px-2 py-1 rounded-full bg-black/25 text-gray-300 text-xs capitalize"
+                                                className="px-2 py-1 rounded-full border-[1.5px]  bg-black/25 text-gray-300 text-xs capitalize"
                                             >
                                                 {skill}
                                             </span>

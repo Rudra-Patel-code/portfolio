@@ -4,7 +4,7 @@ const Footer = () => {
             <p className="text-xs">
                 This is the end of Portfolio.
                 <br />
-                Designed & Developed by Chetan Panchal, Hosted by Vercel
+                Designed & Developed by Rudra Patel, Hosted by Vercel
             </p>
         </section>
     );

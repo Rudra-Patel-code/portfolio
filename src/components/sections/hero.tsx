@@ -23,7 +23,7 @@ const Hero = () => {
                 <span className="text-gray-500">
                     Hello <WavingHand />, I&apos;m{" "}
                 </span>
-                Chetan
+                Rudra
             </motion.h2>
             <motion.h1 className={headings.h1} variants={childVariants}>
                 Full Stack <span className="text-gray-500">Developer</span>
