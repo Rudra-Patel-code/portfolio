@@ -1,4 +1,12 @@
 import type { Config } from "tailwindcss";
+// import defaultTheme from "tailwindcss/defaultTheme"
+// import colors from "tailwindcss/colors"
+// @ts-expect-error this is declaration file error
+import { default as flattenColorPalette } from "tailwindcss/lib/util/flattenColorPalette"
+// const {
+//   default: flattenColorPalette,
+// } = require("tailwindcss/lib/util/flattenColorPalette");
+ 
 
 const config: Config = {
     content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
@@ -20,6 +28,21 @@ const config: Config = {
             },
         },
     },
-    plugins: [],
+    plugins: [
+        // rest of the code
+        addVariablesForColors,
+      ],
 };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function addVariablesForColors({ addBase, theme }: any) {
+    const allColors = flattenColorPalette(theme("colors"));
+    const newVars = Object.fromEntries(
+      Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+    );
+   
+    addBase({
+      ":root": newVars,
+    });
+  }
 export default config;

@@ -5,19 +5,21 @@ import { buttons, headings } from "../styles";
 import { motion } from "framer-motion";
 import { containerVariants, childVariants, fadeVariants } from "../animations";
 import { Skill } from "../interfaces";
+import clsx from "clsx";
 
 const Skills = () => {
     return (
         <motion.section
             id="skills"
-            className="max-w-[768px] mx-auto my-20 flex flex-col justify-center items-center gap-10"
+            className="max-w-[768px] mx-auto flex flex-col justify-center items-center my-20 pt-36"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            exit={"hidden"}
+            viewport={{ once: false, amount: 0.1 }}
             variants={containerVariants}
         >
             <motion.h2
-                className={headings.h2}
+                className={clsx(headings.h2, "mb-16")}
                 variants={childVariants}
                 viewport={{ once: true, amount: 0.1 }}
             >

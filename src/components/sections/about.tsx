@@ -4,15 +4,17 @@ import { headings, text } from "../styles";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { containerVariants, childVariants } from "../animations";
+import clsx from "clsx";
 
 const About = () => {
     return (
         <motion.section
             id="about"
-            className="w-full flex justify-center items-center gap-10 flex-wrap my-20"
+            className="w-full flex justify-center items-center gap-10 flex-wrap my-20 pt-36"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            exit={"hidden"}
+            viewport={{ once: false, amount: 0.1 }}
             variants={containerVariants}
         >
             <motion.div
@@ -20,7 +22,7 @@ const About = () => {
                 variants={childVariants}
                 viewport={{ once: true, amount: 0.1 }}
             >
-                <h2 className={headings.h2}>About me</h2>
+                <h2 className={clsx(headings.h2, "mb-16")}>About me</h2>
                 <p className={text.normal}>
                     Hey, I&apos;m{" "}
                     <span className={text.highlighted}>Rudra Patell</span>{" "}
@@ -28,7 +30,8 @@ const About = () => {
                     <span className={text.highlighted}>
                         Full Stack Developer & UI/UX Designer with extensive
                         industry-level experience in designing and developing
-                        high-performance websites with the familiarity of Web 3.0
+                        high-performance websites with the familiarity of Web
+                        3.0
                     </span>
                     <br />
                     My expertise lies in{" "}

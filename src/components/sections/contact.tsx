@@ -6,7 +6,7 @@ import { FaGithub } from "react-icons/fa";
 import { FiLinkedin } from "react-icons/fi";
 import { IoCloudDoneOutline } from "react-icons/io5";
 import { FaSpinner } from "react-icons/fa";
-import emailjs from "emailjs-com"
+import emailjs from "emailjs-com";
 
 const Contact = () => {
     const [sending, setSending] = useState(false);
@@ -49,10 +49,9 @@ const Contact = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-
-    const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID!
-    const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID!
-    const USER_ID = process.env.NEXT_PUBLIC_USER_ID!
+    const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID!;
+    const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID!;
+    const USER_ID = process.env.NEXT_PUBLIC_USER_ID!;
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -62,24 +61,31 @@ const Contact = () => {
             data.append("name", formData.name);
             data.append("email", formData.email);
             data.append("message", formData.message);
-            
-          emailjs.send(SERVICE_ID, TEMPLATE_ID, {
-                name: formData.name,
-                email: formData.email,
-                message: formData.message,
-            }, USER_ID).then((res) => {
-                console.log("Email sent successfully!");
-                console.log(res)
-                setSent(true);
-                setFormData({
-                    name: "",
-                    email: "",
-                    message: "",
+
+            emailjs
+                .send(
+                    SERVICE_ID,
+                    TEMPLATE_ID,
+                    {
+                        name: formData.name,
+                        email: formData.email,
+                        message: formData.message,
+                    },
+                    USER_ID
+                )
+                .then((res) => {
+                    console.log("Email sent successfully!");
+                    console.log(res);
+                    setSent(true);
+                    setFormData({
+                        name: "",
+                        email: "",
+                        message: "",
+                    });
+                })
+                .catch((err) => {
+                    console.error("Failed to send email.", err);
                 });
-            }).catch((err) => {
-                console.error("Failed to send email.", err);
-            })
-         
         } else {
             console.log("Validation failed.");
         }
@@ -89,7 +95,7 @@ const Contact = () => {
     return (
         <section
             id="contact"
-            className="w-full flex justify-center items-center gap-10 flex-wrap my-20"
+            className="w-full flex justify-center items-center gap-10 flex-wrap my-20 py-40"
         >
             <div className="min-w-[200px] w-full max-w-[400px] flex flex-col justify-center items-start gap-5">
                 <h2 className={headings.h2}>Contact</h2>
@@ -98,7 +104,7 @@ const Contact = () => {
                     <br />
                     There&apos;re multiple ways to connect with me.
                 </p>
-               
+
                 <a
                     href="mailto:rudracode2004@gmail.com"
                     className={`${links.primary} flex items-center gap-2`}

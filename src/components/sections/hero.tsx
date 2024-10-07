@@ -13,8 +13,10 @@ const Hero = () => {
             id="hero"
             className="min-h-screen w-full flex flex-col justify-center items-center relative"
             initial="hidden"
-            animate="visible"
+            whileInView="visible" // Triggers when the component comes into the viewport
+            exit="hidden" // Optional: You can define exit animations if needed
             variants={containerVariants}
+            viewport={{ once: false }} // Allows repeated triggering
         >
             <motion.h2
                 className={`${headings.h2} absolute top-10 mx-auto`}
